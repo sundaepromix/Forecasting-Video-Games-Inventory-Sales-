@@ -1,108 +1,111 @@
-# Video Game Inventory Sales Forecasting
+# Video Game Sales Forecasting
 
-## **Table of Contents**
+## Table of Contents
 1. [Project Overview](#project-overview)
 2. [Business Problem](#business-problem)
-3. [Data Preparation and Exploration](#data-preparation-and-exploration)
-4. [Methodology](#methodology)
-5. [Technologies Used](#technologies-used)
-6. [Results and Insights](#results-and-insights)
-7. [How to Run the Project](#how-to-run-the-project)
-8. [Conclusion](#conclusion)
-9. [Acknowledgments](#acknowledgments)
+3. [Data Analysis](#data-analysis)
+4. [Our Approach](#our-approach)
+5. [Model Testing](#model-testing)
+6. [Tools We Used](#tools-we-used)
+7. [What We Found](#what-we-found)
+8. [Running the Project](#running-the-project)
+9. [Wrapping Up](#wrapping-up)
 
+## Project Overview
+We built this project to predict video game sales each month for a local resale shop. Getting these predictions right helps the shop keep the right amount of games in stock - not too many, not too few.
 
-## 1. Project Overview
+## Business Problem
+Game resellers face a tricky balance:
+- Having too many games ties up money and shelf space
+- Having too few means missing out on sales
 
-This project forecasts monthly video game sales for a local resale company. Accurate forecasting helps optimize inventory management, ensuring that supply meets customer demand without overstocking or understocking.
+Our team at Amdari needed to:
+- Help the shop predict future sales
+- Test different prediction methods
+- Find patterns in past sales data
 
-## 2. Business Problem
+## Data Analysis
+We started by:
+- Loading sales history from our database
+- Fixing dates and missing information
+- Looking for sales patterns
 
-Businesses that resell video games need to balance inventory with demand. Poor inventory planning can lead to:
+What we noticed:
+- Sales go up and down with seasons
+- Different game systems sell differently
+- Holiday sales make a big difference
 
-#### Overestimation: Excess inventory, increased costs, and wasted resources.
-#### Underestimation: Lost sales opportunities and dissatisfied customers.
-#### Objective
-The Data Science Team at Amdari has been tasked to:
-Provide actionable insights to synchronize inventory with expected demand.
-Evaluate the performance of predictive models.
+## Our Approach
+We cleaned up the data by:
+- Making sure dates were in the right format
+- Adding helpful information like months and seasons
+- Marking holidays and sales events
 
-## 3. Data Preparation and Exploration
-### 3.1 Data Loading
-Loaded historical sales data using Pandas.
-### 3.2 Data Cleaning
-Converted date columns to datetime format.
-Checked for missing values and outliers.
-Ensured the dataset was suitable for time series analysis.
-### 3.3 Exploratory Data Analysis (EDA)
-Analyzed trends, seasonality, and patterns in the data.
-Visualized sales trends over time using Matplotlib and Seaborn.
+## Model Testing
+We tried three different ways to predict sales:
 
-### Key Observations:
+1. ARIMA Model
+   - Prediction error (RMSE): 29,952
+   - Good at catching short-term patterns
 
-Sales exhibit seasonal patterns, likely due to holidays or new game releases.
-There are occasional spikes in sales, indicating high-demand periods.
+2. ETS Model
+   - Prediction error (RMSE): 31,772
+   - Handles seasonal changes well
 
-## 4. Methodology
-The following steps were performed to build the forecasting model:
+3. Advanced SARIMA Model
+   - Prediction error (RMSE): 30,456
+   - Also looks at things like holidays and sales events
 
-#### Data Preprocessing:
+How different game systems performed (average sales):
+- PC Games: 119,367
+- Nintendo: 117,984
+- Xbox: 108,868
+- PlayStation: 102,825
 
-Prepared the data to meet time series requirements.
-Feature Engineering:
+Sales by quarter:
+- January-March: 128,483
+- April-June: 122,687
+- July-September: 104,846
+- October-December: 93,380
 
-Extracted features such as month, year, and seasonality trends.
+## Tools We Used
+- Python for all our coding
+- Pandas to handle data
+- Matplotlib to make graphs
+- Statsmodels for predictions
+- Jupyter Notebook to put it all together
 
-## 5. Technologies Used
-Python
-Jupyter Notebook
-Pandas: Data manipulation and cleaning.
-Matplotlib and Seaborn: Data visualization.
-Statsmodels: Time series analysis and modeling.
-Scikit-learn: Evaluation and validation of models.
+## What We Found
+- ARIMA worked best for predictions
+- Sales follow clear seasonal patterns
+- Different game systems need different stock levels
+- Special sales events help, but not as much as we thought
 
-## 6. Results and Insights
+## Running the Project
 
-Sales showed significant peaks during specific months, likely related to customer behavior around holidays and promotions.
-
-#### Visualizations:
-The notebook includes detailed plots such as:
-
-Sales trends over time.
-
-## 7. How to Run the Project
-Follow these steps to run the project on your local system:
-
-Clone the Repository
+1. Get the project files:
+```bash
 git clone https://github.com/your-repo-name/video-game-sales-forecast.git
-
 cd video-game-sales-forecast
+```
 
-Install Required Libraries
+2. Install what you need:
+```bash
+pip install -r requirements.txt
+```
 
-Run the Jupyter Notebook
-#### Open the notebook in Jupyter and execute the cells:
-
+3. Open and run the notebook:
+```bash
 jupyter notebook "Forecasting Video Games Inventory Sales.ipynb"
-View Results
-The notebook will generate visualizations and predictions for video game sales.
+```
 
-## 8. Conclusion
-This project highlights the value of time series forecasting in inventory management. By accurately predicting future sales, businesses can:
+## Wrapping Up
+We found that we can predict game sales pretty well using ARIMA. The shop should:
+- Stock up before busy seasons
+- Keep different amounts for different game systems
+- Plan ahead for quarterly changes
 
-Minimize excess inventory costs.
-Ensure products are available when customers need them.
-Make data-driven decisions to improve overall performance.
-
-## 9. Acknowledgments
-Special thanks to the Data Science Team at Amdari for their collaboration and contributions to this project.
-
-
-
-
-
-
-
+Thanks to everyone at Amdari who helped with this project!
 
 
 
