@@ -1,114 +1,136 @@
-# Video Game Sales Forecasting
+# Video Game Sales Forecasting System
 
-## Table of Contents
-1. [Project Overview](#project-overview)
-2. [Business Problem](#business-problem)
-3. [Data Analysis](#data-analysis)
-4. [Our Approach](#our-approach)
-5. [Model Testing](#model-testing)
-6. [Tools We Used](#tools-we-used)
-7. [What We Found](#what-we-found)
-8. [Running the Project](#running-the-project)
-9. [Wrapping Up](#wrapping-up)
+## 📊 Project Overview
+An advanced time series forecasting system analyzing gaming sales from 2002-2023. The system provides sales predictions across major gaming platforms with a 4-month forecasting window.
 
-## Project Overview
-We built this project to predict video game sales each month for a local resale shop. Getting these predictions right helps the shop keep the right amount of games in stock - not too many, not too few.
+**Supported Platforms:**
+- Nintendo
+- PC
+- PlayStation
+- Xbox
 
-## Business Problem
-Game resellers face a tricky balance:
-- Having too many games ties up money and shelf space
-- Having too few means missing out on sales
+## 🔧 Model Architecture 
 
-Our team at Amdari needed to:
-- Help the shop predict future sales
-- Test different prediction methods
-- Find patterns in past sales data
-
-## Data Analysis
-We started by:
-- Loading sales history from our database
-- Fixing dates and missing information
-- Looking for sales patterns
-
-What we noticed:
-- Sales go up and down with seasons
-- Different game systems sell differently
-- Holiday sales make a big difference
-
-## Our Approach
-We cleaned up the data by:
-- Making sure dates were in the right format
-- Adding helpful information like months and seasons
-- Marking holidays and sales events
-
-## Model Testing
-We tried three different ways to predict sales:
-
-1. ARIMA Model
-   - Prediction error (RMSE): 29,952
-   - Good at catching short-term patterns
-
-2. ETS Model
-   - Prediction error (RMSE): 31,772
-   - Handles seasonal changes well
-
-3. Advanced SARIMA Model
-   - Prediction error (RMSE): 30,456
-   - Also looks at things like holidays and sales events
-
-How different game systems performed (average sales):
-- PC Games: 119,367
-- Nintendo: 117,984
-- Xbox: 108,868
-- PlayStation: 102,825
-
-Sales by quarter:
-- January-March: 128,483
-- April-June: 122,687
-- July-September: 104,846
-- October-December: 93,380
-
-## Tools We Used
-- Python for all our coding
-- Pandas to handle data
-- Matplotlib to make graphs
-- Statsmodels for predictions
-- Jupyter Notebook to put it all together
-
-## What We Found
-- ARIMA worked best for predictions
-- Sales follow clear seasonal patterns
-- Different game systems need different stock levels
-- Special sales events help, but not as much as we thought
-
-## Running the Project
-
-1. Get the project files:
-```bash
-git clone https://github.com/your-repo-name/video-game-sales-forecast.git
-cd video-game-sales-forecast
+### ARIMA Configuration
+```python
+model = ARIMA(train['Monthly Sales'], 
+             order=(0, 1, 1))  # (p,d,q)
 ```
 
-2. Install what you need:
-```bash
-pip install -r requirements.txt
+### SARIMAX Configuration
+```python
+model = SARIMAX(train['Monthly Sales'], 
+               order=(1, 0, 1), 
+               seasonal_order=(0, 1, 1, 12))
 ```
 
-3. Open and run the notebook:
-```bash
-jupyter notebook "Forecasting Video Games Inventory Sales.ipynb"
+### ETS Configuration
+```python
+model = ExponentialSmoothing(train, 
+                           trend="additive", 
+                           seasonal="additive", 
+                           seasonal_periods=12, 
+                           damped=True)
 ```
 
-## Wrapping Up
-We found that we can predict game sales pretty well using ARIMA. The shop should:
-- Stock up before busy seasons
-- Keep different amounts for different game systems
-- Plan ahead for quarterly changes
+## 📈 Performance Metrics
 
-Thanks to everyone at Amdari who helped with this project!
+| Model   | RMSE    | Description                |
+|---------|---------|----------------------------|
+| ARIMA   | [VALUE] | Basic trend analysis       |
+| SARIMAX | [VALUE] | Better for seasonal patterns|
+| ETS     | [VALUE] | Strong with long-term trends|
 
+## 🗄️ Dataset Features
+- Category (Game Genre)
+- Monthly Sales
+- Platform Distribution
+- Holiday Flags
+- Promotional Events
+- Quarterly Metrics
 
+## 🛠️ Quick Start
 
+```bash
+# Clone repository
+git clone https://github.com/sundaepromix/Forecasting-Video-Games-Inventory-Sales-
 
+# Install requirements
+pip install pandas numpy statsmodels sklearn matplotlib
 
+# Run forecasting
+python forecast.py
+```
 
+## 📝 Basic Usage
+
+### ARIMA Model
+```python
+# Data preparation
+train = data[:-12]
+test = data[-12:]
+
+# Model fitting
+model = ARIMA(train['Monthly Sales'], order=(0, 1, 1))
+results = model.fit()
+
+# Forecasting
+forecast = results.forecast(steps=4)
+```
+
+### SARIMAX Model
+```python
+# Model fitting
+model = SARIMAX(train['Monthly Sales'], 
+               order=(1, 0, 1), 
+               seasonal_order=(0, 1, 1, 12))
+results = model.fit()
+
+# Forecasting
+forecast = results.get_forecast(steps=4)
+```
+
+### ETS Model
+```python
+# Model fitting
+model = ExponentialSmoothing(train, 
+                           trend="additive", 
+                           seasonal="additive", 
+                           seasonal_periods=12)
+results = model.fit()
+
+# Forecasting
+forecast = results.forecast(steps=4)
+```
+
+## 🔄 Data Processing Pipeline
+1. Date Formatting
+2. Missing Value Treatment
+3. Outlier Detection
+4. Feature Engineering
+
+## 📊 Validation Framework
+- 12-month test period
+- Cross-validation implementation
+- Error metrics calculation (RMSE, MAPE, MAE)
+- Model comparison and selection
+
+## 🚀 Future Enhancements
+- External factor integration
+- Deep learning implementation
+- Automated retraining pipeline
+- Hybrid model development
+
+## 👥 Contributing
+1. Fork repository
+2. Create feature branch
+3. Submit pull request
+
+## 📚 Dependencies
+- pandas
+- numpy
+- statsmodels
+- scikit-learn
+- matplotlib
+
+*Last updated: January 2025*
