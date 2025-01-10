@@ -35,11 +35,11 @@ model = ExponentialSmoothing(train,
 
 ## 📈 Performance Metrics
 
-| Model   | RMSE    | Description                |
-|---------|---------|----------------------------|
-| ARIMA   | [VALUE] | Basic trend analysis       |
-| SARIMAX | [VALUE] | Better for seasonal patterns|
-| ETS     | [VALUE] | Strong with long-term trends|
+| Model   | RMSE    | 
+|---------|---------|
+| ARIMA   | 29820.495 |
+| SARIMAX | 32884.41 |
+| ETS     | 38174.25 | 
 
 ## 🗄️ Dataset Features
 - Category (Game Genre)
